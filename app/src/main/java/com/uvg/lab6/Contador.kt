@@ -15,8 +15,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
@@ -97,11 +99,16 @@ fun ContadorScreen() {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Historial(historial = historial)
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+                .verticalScroll(rememberScrollState())
+        ) {
+            Historial(historial = historial)
+        }
 
         Spacer(modifier = Modifier.height(20.dp))
-
-        Spacer(modifier = Modifier.weight(1f))
 
         BotonReiniciar(
             onReiniciar = {
@@ -125,7 +132,7 @@ fun Contador(contador: Int, onIncrement: () -> Unit, onDecrement: () -> Unit) {
         IconButton(
             onClick = onDecrement,
             modifier = Modifier
-                .size(50.dp) // Reducido el tamaño de los círculos
+                .size(50.dp)
                 .background(Color.Blue, CircleShape)
         ) {
             Icon(
@@ -136,13 +143,13 @@ fun Contador(contador: Int, onIncrement: () -> Unit, onDecrement: () -> Unit) {
         }
         Text(
             text = contador.toString(),
-            style = MaterialTheme.typography.displayLarge, // Sin negrita, estilo normal
+            style = MaterialTheme.typography.displayLarge,
             modifier = Modifier.padding(horizontal = 16.dp)
         )
         IconButton(
             onClick = onIncrement,
             modifier = Modifier
-                .size(50.dp) // Reducido el tamaño de los círculos
+                .size(50.dp)
                 .background(Color.Blue, CircleShape)
         ) {
             Icon(
